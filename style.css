@@ -362,3 +362,161 @@ p {
     padding-bottom: 72px;
   }
 }
+
+/* ========== Trust strip ========== */
+.trust-strip {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(14, 75, 1, 0.12);
+}
+
+.trust-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-block: 0;
+  padding-block: var(--space-5);
+  list-style: none;
+}
+
+.trust-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@media (min-width: 900px) {
+  .trust-list {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+
+/* ========== Sections (shared) ========== */
+.services {
+  padding-block: var(--space-8);
+}
+
+.section-intro {
+  max-width: 60ch;
+  margin-bottom: var(--space-6);
+  font-size: 1.0625rem;
+}
+
+/* ========== Services grid ========== */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.12);
+  border-radius: var(--radius);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(14, 75, 1, 0.12);
+}
+
+.service-icon {
+  margin-bottom: var(--space-3);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.service-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.service-card p {
+  margin-bottom: var(--space-3);
+}
+
+.service-price {
+  margin-top: auto;
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+.service-card a {
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== How it works ========== */
+.how-it-works {
+  padding-block: var(--space-8);
+  background-color: var(--green-100);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  text-align: center;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  background-color: var(--green-900);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.step p {
+  max-width: 34ch;
+  margin-inline: auto;
+}
+
+.how-it-works .btn {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+/* the default white focus ring is invisible on this light background */
+.how-it-works .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+@media (min-width: 900px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-7);
+  }
+}
