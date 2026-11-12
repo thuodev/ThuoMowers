@@ -1,0 +1,364 @@
+/* ========== Design tokens ========== */
+:root {
+  /* Colours */
+  --green-900: #0e4b01;
+  --green-600: #2f7d1a;
+  --green-100: hsl(115, 100%, 91%);
+  --accent: #f5a524;
+  --whatsapp: #25d366;
+  --bg: #f4f4f4;
+  --text: #1f1c1c;
+
+  /* Fonts (loaded in step 2) */
+  --font-heading: "Fraunces", Georgia, serif;
+  --font-body:
+    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+
+  /* Shape */
+  --radius: 10px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container-width: 1100px;
+}
+
+/* ========== Reset and base ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--green-900);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 var(--space-4);
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw + 1rem, 2.75rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+/* ========== Layout helper ========== */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+/* ========== Header and navbar ========== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--green-100);
+  box-shadow: 0 1px 0 rgba(14, 75, 1, 0.12);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: var(--space-4);
+}
+
+.navbar .logo {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar-links a {
+  position: relative;
+  padding-bottom: 5px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* underline grows on hover, and stays on the current page */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--green-900);
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after,
+.navbar-links a[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* "Get a Quote" button inside the nav */
+.navbar-links a.nav-cta {
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--accent);
+  border-radius: var(--radius-pill);
+  transition: filter 0.2s ease;
+}
+
+.navbar-links a.nav-cta::after {
+  display: none;
+}
+
+.navbar-links a.nav-cta:hover {
+  filter: brightness(0.93);
+}
+
+/* hamburger button: hidden on desktop */
+.nav-toggle {
+  display: none;
+  padding: var(--space-2);
+  background: none;
+  border: 0;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* visible keyboard focus */
+.navbar a:focus-visible,
+.nav-toggle:focus-visible {
+  outline: 3px solid var(--green-600);
+  outline-offset: 3px;
+}
+
+/* ========== Mobile navbar ========== */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2) var(--space-4) var(--space-4);
+    background-color: var(--green-100);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  /* script.js adds this class in step 3c */
+  .navbar-links.is-open {
+    display: flex;
+  }
+
+  .navbar-links a {
+    padding: var(--space-3) 0;
+  }
+
+  .navbar-links a::after {
+    display: none;
+  }
+
+  .navbar-links a[aria-current="page"] {
+    color: var(--green-900);
+  }
+
+  .navbar-links a.nav-cta {
+    margin-top: var(--space-3);
+    text-align: center;
+  }
+}
+
+/* ========== Buttons ========== */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.93);
+  transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+}
+
+.btn-whatsapp {
+  background-color: var(--whatsapp);
+}
+
+/* ========== Hero ========== */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: min(80vh, 640px);
+  padding-block: var(--space-8);
+  color: #fff;
+  /* dark overlay on top of a green gradient.
+     Later, add the photo as a second layer:
+     url("images/hero.webp") center / cover no-repeat */
+  background:
+    linear-gradient(rgba(6, 35, 0, 0.55), rgba(6, 35, 0, 0.7)),
+    linear-gradient(135deg, var(--green-600), var(--green-900));
+}
+
+.hero-content {
+  max-width: 700px;
+  margin-inline: 0;
+}
+
+.hero-eyebrow {
+  margin-bottom: var(--space-3);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-100);
+}
+
+.hero h1 {
+  color: #fff;
+}
+
+.hero-sub {
+  max-width: 55ch;
+  margin-bottom: var(--space-6);
+  font-size: 1.125rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-block: var(--space-7);
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ========== Sticky contact bar (phones only) ========== */
+.contact-bar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .contact-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: flex;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+    background-color: #fff;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .contact-bar a {
+    flex: 1;
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .contact-bar-call {
+    background-color: var(--green-900);
+    color: #fff;
+  }
+
+  .contact-bar-whatsapp {
+    background-color: var(--whatsapp);
+    color: #062300;
+  }
+
+  .contact-bar a:focus-visible {
+    outline: 3px solid var(--green-600);
+    outline-offset: 2px;
+  }
+
+  /* leave room so the bar never covers the end of the page */
+  body {
+    padding-bottom: 72px;
+  }
+}
