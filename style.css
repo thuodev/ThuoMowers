@@ -520,3 +520,342 @@ p {
     gap: var(--space-7);
   }
 }
+
+/* ========== Gallery preview ========== */
+.gallery-preview {
+  padding-block: var(--space-8);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.before-after {
+  margin: 0;
+  min-width: 0;
+}
+
+.ba-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+/* grey stand-in box; also works as the frame for a real photo */
+.photo-placeholder {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(
+    45deg,
+    #d9ded6,
+    #d9ded6 12px,
+    #e6eae3 12px,
+    #e6eae3 24px
+  );
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ba-label {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: rgba(31, 28, 28, 0.85);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.ba-label-after {
+  background-color: var(--green-900);
+}
+
+.before-after figcaption {
+  margin-top: var(--space-3);
+  font-weight: 600;
+}
+
+.gallery-preview .btn {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+/* white focus ring would be invisible on this light background */
+.gallery-preview .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+/* ========== Reviews ========== */
+.reviews {
+  padding-block: var(--space-8);
+  background-color: #fff;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.review-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background-color: var(--bg);
+  border: 1px solid rgba(14, 75, 1, 0.12);
+  border-radius: var(--radius);
+}
+
+/* large decorative quote mark */
+.review-card::before {
+  content: "“";
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-5);
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--green-600);
+  opacity: 0.25;
+}
+
+.review-stars {
+  margin-bottom: var(--space-3);
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.review-card blockquote {
+  margin: 0 0 var(--space-4);
+}
+
+.review-card blockquote p {
+  margin: 0;
+}
+
+.review-card figcaption {
+  margin-top: auto;
+}
+
+.review-card figcaption strong,
+.review-card figcaption span {
+  display: block;
+}
+
+.review-card figcaption span {
+  font-size: 0.875rem;
+  color: #5a5a5a;
+}
+
+@media (min-width: 900px) {
+  .review-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+
+/* ========== Areas ========== */
+.areas {
+  padding-block: var(--space-8);
+}
+
+.areas-heading {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.chip-list li {
+  padding: var(--space-2) var(--space-4);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.areas-link {
+  font-weight: 600;
+}
+
+/* ========== Final call to action ========== */
+.final-cta {
+  padding-block: var(--space-8);
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(135deg, var(--green-600), var(--green-900));
+}
+
+.final-cta h2 {
+  color: #fff;
+}
+
+.final-cta p {
+  max-width: 50ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+  font-size: 1.125rem;
+}
+
+.final-cta .hero-actions {
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .final-cta {
+    padding-block: var(--space-7);
+  }
+
+  .final-cta .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+
+
+/* ========== Footer ========== */
+.site-footer {
+  color: #e8f0e5;
+  background-color: #0a2e00;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  padding-block: var(--space-7);
+}
+
+.site-footer a {
+  color: #e8f0e5;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* the .logo rule in the navbar only applies inside .navbar, so style it here */
+.site-footer .logo {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.footer-brand p {
+  max-width: 34ch;
+  margin: 0;
+}
+
+.footer-col h3 {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-100);
+}
+
+.footer-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-mpesa {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.footer-mpesa strong {
+  font-size: 1.125rem;
+  color: var(--accent);
+}
+
+/* bottom bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.875rem;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
