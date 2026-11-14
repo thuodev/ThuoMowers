@@ -24,30 +24,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="site-header">
-      <nav class="navbar container" aria-label="Main">
-        <a href="index.html" class="logo">Thuo Mowers</a>
-
-        <button
-          class="nav-toggle"
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          ☰
-        </button>
-
-        <div class="navbar-links" id="nav-links">
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="areas.html">Areas</a>
-          <a href="about.html">About</a>
-          <a href="contact.html" aria-current="page">Contact</a>
-          <a href="quote.html" class="nav-cta">Get a Quote</a>
-        </div>
-      </nav>
-    </header>
+    {{> header}}
 
     <section class="page-hero">
       <div class="container">
@@ -73,7 +50,7 @@
                 Quickest for quotes. You can send photos of your garden too.
               </p>
               <a
-                href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I%27d%20like%20a%20quote."
+                href="{{wa:Hello Thuo Mowers, I'd like a quote.}}"
                 class="btn btn-whatsapp"
                 target="_blank"
                 rel="noopener"
@@ -85,8 +62,8 @@
               <span class="service-icon" aria-hidden="true">📞</span>
               <h3>Call us</h3>
               <p>Speak to us directly during opening hours.</p>
-              <a href="tel:+254114071456" class="btn btn-call"
-                >+254 114 071 456</a
+              <a href="tel:{{phoneTel}}" class="btn btn-call"
+                >{{phoneDisplay}} </a
               >
             </article>
 
@@ -94,9 +71,7 @@
               <span class="service-icon" aria-hidden="true">✉️</span>
               <h3>Email</h3>
               <p>Best for invoices, receipts and longer enquiries.</p>
-              <a href="mailto:info@example.co.ke" class="btn btn-call"
-                >info@example.co.ke</a
-              >
+             <a href="mailto:{{email}}" class="btn btn-call">{{email}}</a>
             </article>
           </div>
         </div>
@@ -110,15 +85,15 @@
             <dl class="info-list">
               <div>
                 <dt>Monday to Saturday</dt>
-                <dd>7:00am to 6:00pm</dd>
+<dd>{{hoursWeekdays}}</dd>
               </div>
               <div>
                 <dt>Sunday</dt>
-                <dd>Closed</dd>
+<dd>{{hoursSunday}}</dd>
               </div>
               <div>
                 <dt>Pay by M-Pesa</dt>
-                <dd>Till No: <strong>000000</strong></dd>
+                <dd>Till No: <strong>{{till}}</strong></dd>
               </div>
               <div>
                 <dt>Also accepted</dt>
@@ -157,7 +132,7 @@
         <p>Tell us about your garden and get a free quote today.</p>
         <div class="hero-actions">
           <a
-            href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I%27d%20like%20a%20quote."
+            href="{{wa:Hello Thuo Mowers, I'd like a quote.}}"
             class="btn btn-whatsapp"
             target="_blank"
             rel="noopener"
@@ -176,19 +151,9 @@
       </div>
     </footer>
 
-        <div class="contact-bar" aria-label="Quick contact">
-      <a href="tel:+254114071456" class="contact-bar-call">
-        <span aria-hidden="true">📞</span> Call
-      </a>
-      <a
-        href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I%27d%20like%20a%20quote."
-        class="contact-bar-whatsapp"
-        target="_blank"
-        rel="noopener"
-      >
-        <span aria-hidden="true">💬</span> WhatsApp
-      </a>
-    </div>
+        {{> footer}}
+
+    {{> contact-bar}}
 
     <script src="script.js" defer></script>
   </body>

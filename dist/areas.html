@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Areas We Serve | Thuo Mowers Services</title>
+    <meta
+      name="description"
+      content="Thuo Mowers serves all major towns and estates across Kenya. Search for your town or estate to check we cover your area, then get a free quote."
+    />
+    <meta name="theme-color" content="#0e4b01" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a href="index.html" class="logo">Thuo Mowers</a>
+
+    <button
+      class="nav-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      ☰
+    </button>
+
+    <div class="navbar-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a aria-current="page" href="areas.html">Areas</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="quote.html" class="nav-cta">Get a Quote</a>
+    </div>
+  </nav>
+</header>
+
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>Areas we serve</h1>
+        <p>
+          We work in all major towns and their estates. Search for yours to
+          check, or message us if you can't find it.
+        </p>
+      </div>
+    </section>
+
+    <main class="areas-page">
+      <div class="container">
+        <div class="area-search" role="search">
+          <label for="area-search">Find your town or estate</label>
+          <input
+            type="search"
+            id="area-search"
+            placeholder="e.g. Kileleshwa, Nyali, Milimani"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- screen readers hear the result count; sighted users see it too -->
+        <p id="area-status" class="area-status" aria-live="polite"></p>
+
+        <!-- script.js fills this in from areas-data.js (step 16c) -->
+        <div id="area-results" class="area-grid"></div>
+
+        <!-- shown when a search finds nothing -->
+        <div id="area-empty" class="area-empty" hidden>
+          <h2>We may still cover you</h2>
+          <p>
+            We couldn't find that in our list, but our coverage grows all the
+            time. Message us and we'll tell you straight away.
+          </p>
+          <a
+            id="area-empty-link"
+            href="https://wa.me/254114071456"
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+            >Ask on WhatsApp</a
+          >
+        </div>
+
+        <noscript>
+          <p>
+            Turn on JavaScript to browse our areas, or
+            <a href="https://wa.me/254114071456">message us on WhatsApp</a> to
+            check your location.
+          </p>
+        </noscript>
+      </div>
+    </main>
+
+    <section class="final-cta">
+      <div class="container final-cta-inner">
+        <h2>Ready for a neater garden?</h2>
+        <p>Send us a message and get a free quote today.</p>
+        <div class="hero-actions">
+          <a
+            href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I'd%20like%20a%20quote."
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            Chat on WhatsApp
+          </a>
+          <a href="quote.html" class="btn btn-primary">Get a free quote</a>
+        </div>
+      </div>
+    </section>
+ <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p>&copy; 2026 Thuo Mowers Services. All rights reserved.</p>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+        <!-- data first, then the main script that uses it -->
+    <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Thuo Mowers</a>
+      <p>
+        Lawn mowing, hedge trimming and landscaping across Kenya's major towns
+        and estates.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Footer">
+      <h3>Quick links</h3>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="areas.html">Areas we serve</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="quote.html">Get a quote</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="tel:+254114071456">+254 114 071 456</a></li>
+        <li>
+          <a href="https://wa.me/254114071456" target="_blank" rel="noopener">WhatsApp us</a>
+        </li>
+        <li><a href="mailto:info@example.co.ke">info@example.co.ke</a></li>
+        <li>Your Street, Your Town, Kenya</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hours &amp; payment</h3>
+      <ul>
+        <li>Mon to Sat: 7:00am to 6:00pm</li>
+        <li>Sunday: Closed</li>
+        <li class="footer-mpesa">
+          Pay by M-Pesa<br />
+          Till No: <strong>000000</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 Thuo Mowers Services. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+
+    <div class="contact-bar" aria-label="Quick contact">
+  <a href="tel:+254114071456" class="contact-bar-call">
+    <svg class="icon" aria-hidden="true">
+      <use href="icons.svg#phone"></use>
+    </svg>
+    Call
+  </a>
+  <a
+    href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I'd%20like%20a%20quote."
+    class="contact-bar-whatsapp"
+    target="_blank"
+    rel="noopener"
+  >
+    <svg class="icon" aria-hidden="true"><use href="icons.svg#chat"></use></svg>
+    WhatsApp
+  </a>
+</div>
+
+
+    <script src="areas-data.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

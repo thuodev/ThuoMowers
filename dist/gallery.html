@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Our Work | Thuo Mowers Services</title>
+    <meta
+      name="description"
+      content="Before and after photos of our lawn mowing, hedge trimming and garden clean-up jobs. See the difference we make, then get a free quote."
+    />
+    <meta name="theme-color" content="#0e4b01" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+  <nav class="navbar container" aria-label="Main">
+    <a href="index.html" class="logo">Thuo Mowers</a>
+
+    <button
+      class="nav-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-links"
+    >
+      ☰
+    </button>
+
+    <div class="navbar-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a aria-current="page" href="gallery.html">Gallery</a>
+      <a href="areas.html">Areas</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="quote.html" class="nav-cta">Get a Quote</a>
+    </div>
+  </nav>
+</header>
+
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>Our work</h1>
+        <p>
+          See the difference a proper cut and clean-up makes. Tap any photo to
+          view it full size.
+        </p>
+      </div>
+    </section>
+
+    <main class="gallery-page">
+      <div class="container">
+        <div class="filter-bar" role="group" aria-label="Filter by service">
+          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-btn" data-filter="mowing" aria-pressed="false">Lawn mowing</button>
+          <button type="button" class="filter-btn" data-filter="hedges" aria-pressed="false">Hedge trimming</button>
+          <button type="button" class="filter-btn" data-filter="cleanup" aria-pressed="false">Garden clean-up</button>
+        </div>
+
+        <!-- PLACEHOLDER PHOTOS: stock/test images. Replace with the company's
+             own before/after jobs and add the town or estate to each caption. -->
+        <div class="gallery-grid">
+          <figure class="before-after" data-category="mowing">
+            <div class="ba-pair">
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/lawn-before.webp"
+                  data-caption="Lawn mowing and edging: before">
+                  <img src="images/lawn-before.webp" alt="Overgrown, uneven lawn before mowing"
+                       width="1200" height="800" loading="lazy" />
+                </button>
+                <span class="ba-label">Before</span>
+              </div>
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/lawn-after.webp"
+                  data-caption="Lawn mowing and edging: after">
+                  <img src="images/lawn-after.webp" alt="Evenly mowed lawn with neat stripes after mowing"
+                       width="1200" height="801" loading="lazy" />
+                </button>
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+            </div>
+            <figcaption>Lawn mowing and edging</figcaption>
+          </figure>
+
+          <figure class="before-after" data-category="hedges">
+            <div class="ba-pair">
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/hedge-before.webp"
+                  data-caption="Hedge trimming: before">
+                  <img src="images/hedge-before.webp" alt="Tall hedges lining a dark garden path"
+                       width="900" height="1200" loading="lazy" />
+                </button>
+                <span class="ba-label">Before</span>
+              </div>
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/hedge-after.webp"
+                  data-caption="Hedge trimming: after">
+                  <img src="images/hedge-after.webp" alt="Neatly trimmed hedges along a paved path"
+                       width="1200" height="800" loading="lazy" />
+                </button>
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+            </div>
+            <figcaption>Hedge trimming</figcaption>
+          </figure>
+
+          <figure class="before-after" data-category="cleanup">
+            <div class="ba-pair">
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/cleanup-before.webp"
+                  data-caption="Garden clean-up: before">
+                  <img src="images/cleanup-before.webp" alt="Yard overgrown with weeds before clean-up"
+                       width="478" height="311" loading="lazy" />
+                </button>
+                <span class="ba-label">Before</span>
+              </div>
+              <div class="photo-placeholder">
+                <button type="button" class="photo-btn"
+                  data-full="images/cleanup-after.webp"
+                  data-caption="Garden clean-up: after">
+                  <img src="images/cleanup-after.webp" alt="Tidy paved yard and trimmed lawn after clean-up"
+                       width="485" height="319" loading="lazy" />
+                </button>
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+            </div>
+            <figcaption>Garden clean-up</figcaption>
+          </figure>
+        </div>
+      </div>
+    </main>
+
+    <section class="final-cta">
+      <div class="container final-cta-inner">
+        <h2>Want results like these?</h2>
+        <p>Send us a photo of your garden and get a free quote today.</p>
+        <div class="hero-actions">
+          <a
+            href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I'd%20like%20a%20quote."
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            Chat on WhatsApp
+          </a>
+          <a href="quote.html" class="btn btn-primary">Get a free quote</a>
+        </div>
+      </div>
+    </section>
+
+     <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p>&copy; 2026 Thuo Mowers Services. All rights reserved.</p>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+        <!-- Full-size photo viewer (opened by script.js in step 14c) -->
+    <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+      <button type="button" class="lightbox-close" aria-label="Close photo">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+      <p id="lightbox-caption"></p>
+    </dialog>
+
+    <footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Thuo Mowers</a>
+      <p>
+        Lawn mowing, hedge trimming and landscaping across Kenya's major towns
+        and estates.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Footer">
+      <h3>Quick links</h3>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="areas.html">Areas we serve</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="quote.html">Get a quote</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="tel:+254114071456">+254 114 071 456</a></li>
+        <li>
+          <a href="https://wa.me/254114071456" target="_blank" rel="noopener">WhatsApp us</a>
+        </li>
+        <li><a href="mailto:info@example.co.ke">info@example.co.ke</a></li>
+        <li>Your Street, Your Town, Kenya</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hours &amp; payment</h3>
+      <ul>
+        <li>Mon to Sat: 7:00am to 6:00pm</li>
+        <li>Sunday: Closed</li>
+        <li class="footer-mpesa">
+          Pay by M-Pesa<br />
+          Till No: <strong>000000</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 Thuo Mowers Services. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+
+    <div class="contact-bar" aria-label="Quick contact">
+  <a href="tel:+254114071456" class="contact-bar-call">
+    <svg class="icon" aria-hidden="true">
+      <use href="icons.svg#phone"></use>
+    </svg>
+    Call
+  </a>
+  <a
+    href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I'd%20like%20a%20quote."
+    class="contact-bar-whatsapp"
+    target="_blank"
+    rel="noopener"
+  >
+    <svg class="icon" aria-hidden="true"><use href="icons.svg#chat"></use></svg>
+    WhatsApp
+  </a>
+</div>
+
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
