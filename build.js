@@ -1,6 +1,7 @@
 // Builds the website: fills in shared details, adds the shared header,
 // footer and phone bar, and writes finished plain HTML files to dist/.
-// Run it with:  node build.js
+//   node build.js            build once
+//   node build.js --watch    build, then rebuild whenever you save a file
 
 const fs = require("fs");
 const path = require("path");
@@ -11,28 +12,23 @@ const PARTIALS = path.join(ROOT, "partials");
 const PUBLIC = path.join(ROOT, "public");
 const DIST = path.join(ROOT, "dist");
 
-// ---------- load the shared details ----------
-let site;
-try {
-  site = JSON.parse(fs.readFileSync(path.join(ROOT, "site.json"), "utf8"));
-} catch (error) {
-  console.error("Could not read site.json:", error.message);
-  console.error(
-    "Check for a missing comma or an extra comma on the last line.",
-  );
-  process.exit(1);
-}
-site.year = String(new Date().getFullYear());
-
-// ---------- check the folders exist ----------
-for (const folder of [PAGES, PARTIALS, PUBLIC]) {
-  if (!fs.existsSync(folder)) {
-    console.error(`Missing folder: ${path.relative(ROOT, folder)}/`);
-    process.exit(1);
+// ---------- helpers ----------
+function loadSite() {
+  try {
+    const site = JSON.parse(
+      fs.readFileSync(path.join(ROOT, "site.json"), "utf8"),
+    );
+    site.year = String(new Date().getFullYear());
+    return site;
+  } catch (error) {
+    console.error("Could not read site.json:", error.message);
+    console.error(
+      "Check for a missing comma or an extra comma on the last line.",
+    );
+    return null;
   }
 }
 
-// ---------- helpers ----------
 // so a value like "Fix & Mow" can't break the HTML
 function escapeHtml(text) {
   return String(text)
@@ -69,7 +65,7 @@ function markCurrentPage(header, pageFile) {
   return before + after;
 }
 
-function buildPage(source, pageFile, partials, problems) {
+function buildPage(source, pageFile, partials, site, problems) {
   // 1. {{> header}}, {{> footer}}, {{> contact-bar}}
   let html = source.replace(/\{\{>\s*([\w-]+)\s*\}\}/g, (match, name) => {
     if (!(name in partials)) {
@@ -99,38 +95,103 @@ function buildPage(source, pageFile, partials, problems) {
   return html;
 }
 
-// ---------- build ----------
-fs.rmSync(DIST, { recursive: true, force: true });
-fs.cpSync(PUBLIC, DIST, { recursive: true });
+// ---------- one full build; returns true when there were no problems ----------
+function build() {
+  const site = loadSite();
+  if (!site) return false;
 
-const partials = readPartials();
-const problems = [];
-// fill tokens in script.js too, e.g. {{whatsapp}}
-const scriptPath = path.join(DIST, "script.js");
-if (fs.existsSync(scriptPath)) {
-  const filled = fs
-    .readFileSync(scriptPath, "utf8")
-    .replace(/\{\{(\w+)\}\}/g, (match, key) => {
-      if (key in site) return site[key];
-      problems.push(`script.js: unknown token ${match}`);
-      return match;
-    });
-  fs.writeFileSync(scriptPath, filled);
+  for (const folder of [PAGES, PARTIALS, PUBLIC]) {
+    if (!fs.existsSync(folder)) {
+      console.error(`Missing folder: ${path.relative(ROOT, folder)}/`);
+      return false;
+    }
+  }
+
+  fs.rmSync(DIST, { recursive: true, force: true });
+  fs.cpSync(PUBLIC, DIST, { recursive: true });
+
+  const partials = readPartials();
+  const problems = [];
+
+  // fill tokens in script.js too, e.g. {{whatsapp}}
+  const scriptPath = path.join(DIST, "script.js");
+  if (fs.existsSync(scriptPath)) {
+    const filled = fs
+      .readFileSync(scriptPath, "utf8")
+      .replace(/\{\{(\w+)\}\}/g, (match, key) => {
+        if (key in site) return site[key];
+        problems.push(`script.js: unknown token ${match}`);
+        return match;
+      });
+    fs.writeFileSync(scriptPath, filled);
+  }
+
+  const pageFiles = fs
+    .readdirSync(PAGES)
+    .filter((file) => file.endsWith(".html"));
+
+  for (const pageFile of pageFiles) {
+    const source = fs.readFileSync(path.join(PAGES, pageFile), "utf8");
+    const output = buildPage(source, pageFile, partials, site, problems);
+    fs.writeFileSync(path.join(DIST, pageFile), output);
+  }
+
+  if (problems.length > 0) {
+    console.error("\nBuild finished with problems:");
+    problems.forEach((problem) => console.error(`  - ${problem}`));
+    return false;
+  }
+
+  const time = new Date().toLocaleTimeString();
+  console.log(`[${time}] Built ${pageFiles.length} pages into dist/`);
+  return true;
 }
-const pageFiles = fs
-  .readdirSync(PAGES)
-  .filter((file) => file.endsWith(".html"));
 
-for (const pageFile of pageFiles) {
-  const source = fs.readFileSync(path.join(PAGES, pageFile), "utf8");
-  const output = buildPage(source, pageFile, partials, problems);
-  fs.writeFileSync(path.join(DIST, pageFile), output);
+// ---------- watch mode ----------
+function listFolders(folder) {
+  const folders = [folder];
+  for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      folders.push(...listFolders(path.join(folder, entry.name)));
+    }
+  }
+  return folders;
 }
 
-if (problems.length > 0) {
-  console.error("\nBuild finished with problems:");
-  problems.forEach((problem) => console.error(`  - ${problem}`));
-  process.exitCode = 1;
-} else {
-  console.log(`Built ${pageFiles.length} pages into dist/`);
+function watch() {
+  let timer;
+
+  // wait a moment so several quick saves cause only one rebuild
+  function rebuildSoon(changed) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      console.log(`\nChanged: ${changed}`);
+      build();
+    }, 150);
+  }
+
+  for (const root of [PAGES, PARTIALS, PUBLIC]) {
+    for (const folder of listFolders(root)) {
+      fs.watch(folder, (event, filename) => rebuildSoon(filename || folder));
+    }
+  }
+
+  // site.json lives in the project root; ignore everything else there
+  fs.watch(ROOT, (event, filename) => {
+    if (filename === "site.json") rebuildSoon("site.json");
+  });
+
+  console.log(
+    "Watching pages/, partials/, public/ and site.json. Press Ctrl+C to stop.",
+  );
+}
+
+// ---------- run ----------
+const ok = build();
+
+if (process.argv.includes("--watch")) {
+  // keep going even if the first build had problems, so you can fix them
+  watch();
+} else if (!ok) {
+  process.exit(1);
 }
