@@ -1,0 +1,54 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">{{shortName}}</a>
+      <p>
+        Lawn mowing, hedge trimming and landscaping across Kenya's major towns
+        and estates.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Footer">
+      <h3>Quick links</h3>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="areas.html">Areas we serve</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="quote.html">Get a quote</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="tel:{{phoneTel}}">{{phoneDisplay}}</a></li>
+        <li>
+          <a href="{{wa}}" target="_blank" rel="noopener">WhatsApp us</a>
+        </li>
+        <li><a href="mailto:{{email}}">{{email}}</a></li>
+        <li>{{address}}</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Hours &amp; payment</h3>
+      <ul>
+        <li>Mon to Sat: {{hoursWeekdays}}</li>
+        <li>Sunday: {{hoursSunday}}</li>
+        <li class="footer-mpesa">
+          Pay by M-Pesa<br />
+          Till No: <strong>{{till}}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; {{year}} {{businessName}}. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
