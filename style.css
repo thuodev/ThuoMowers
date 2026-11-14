@@ -429,12 +429,6 @@ p {
   box-shadow: 0 10px 24px rgba(14, 75, 1, 0.12);
 }
 
-.service-icon {
-  margin-bottom: var(--space-3);
-  font-size: 2rem;
-  line-height: 1;
-}
-
 .service-card h3 {
   margin-bottom: var(--space-2);
 }
@@ -608,8 +602,6 @@ p {
   }
 }
 
-
-
 /* ========== Reviews ========== */
 .reviews {
   padding-block: var(--space-8);
@@ -681,9 +673,6 @@ p {
   }
 }
 
-
-
-
 /* ========== Areas ========== */
 .areas {
   padding-block: var(--space-8);
@@ -753,8 +742,6 @@ p {
     flex: 1 1 100%;
   }
 }
-
-
 
 /* ========== Footer ========== */
 .site-footer {
@@ -858,4 +845,970 @@ p {
   .footer-grid {
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
   }
+}
+
+/* ========== Page banner (inner pages) ========== */
+.page-hero {
+  padding-block: var(--space-7);
+  color: #fff;
+  background: linear-gradient(135deg, var(--green-600), var(--green-900));
+}
+
+.page-hero h1 {
+  margin-bottom: var(--space-3);
+  color: #fff;
+}
+
+.page-hero p {
+  max-width: 55ch;
+  margin-bottom: var(--space-5);
+  font-size: 1.125rem;
+}
+
+/* jump links: reuse the chip look, but make the whole chip clickable */
+.jump-links {
+  margin-bottom: 0;
+}
+
+.jump-links li {
+  padding: 0;
+}
+
+.jump-links a {
+  display: block;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--green-900);
+  transition: background-color 0.2s ease;
+}
+
+.jump-links a:hover {
+  background-color: var(--green-100);
+}
+
+.jump-links a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ========== Service detail sections ========== */
+.service-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  padding-block: var(--space-7);
+  border-bottom: 1px solid rgba(14, 75, 1, 0.15);
+  /* keep the heading clear of the sticky header when jumping to an anchor */
+  scroll-margin-top: 80px;
+}
+
+.service-detail:last-child {
+  border-bottom: 0;
+}
+
+.service-detail-text h3 {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+
+.check-list {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-6);
+}
+
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--green-600);
+}
+
+/* price + button card */
+.service-detail-box {
+  align-self: start;
+  padding: var(--space-5);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.12);
+  border-radius: var(--radius);
+}
+
+.service-detail-box .service-price {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.price-note {
+  margin-bottom: var(--space-4);
+  font-size: 0.875rem;
+  color: #5a5a5a;
+}
+
+.service-detail-box .btn {
+  display: block;
+}
+
+.service-detail-box .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+@media (min-width: 900px) {
+  .service-detail {
+    grid-template-columns: 1fr 320px;
+    gap: var(--space-7);
+  }
+
+  .service-detail-box {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+/* ========== Gallery page ========== */
+.gallery-page {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+/* filter buttons */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.filter-btn {
+  padding: var(--space-2) var(--space-4);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.3);
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: var(--green-100);
+}
+
+.filter-btn.is-active {
+  background-color: var(--green-900);
+  border-color: var(--green-900);
+  color: #fff;
+}
+
+.filter-btn:focus-visible {
+  outline: 3px solid var(--green-600);
+  outline-offset: 2px;
+}
+
+/* script.js hides filtered-out jobs with the hidden attribute */
+.before-after[hidden] {
+  display: none;
+}
+
+/* clickable photos: the button covers the whole frame */
+.photo-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.photo-btn img {
+  transition: transform 0.3s ease;
+}
+
+.photo-btn:hover img {
+  transform: scale(1.04);
+}
+
+.photo-btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+/* the Before/After tags must not block clicks on the photo underneath */
+.ba-label {
+  pointer-events: none;
+}
+
+/* ========== Photo viewer (lightbox) ========== */
+.lightbox {
+  width: min(92vw, 1000px);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  text-align: center;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background-color: rgba(0, 0, 0, 0.88);
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 78vh;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+
+.lightbox p {
+  margin: var(--space-3) 0 0;
+  font-weight: 600;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  font-size: 1.25rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-close:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* stop the page scrolling behind the open viewer */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* ========== Before/after toggle (class added by script.js) ========== */
+.ba-pair.is-slider {
+  position: relative;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* stack both photos in the same spot */
+.ba-pair.is-slider > .photo-placeholder {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+/* hide whichever photo is not being shown */
+.ba-pair.is-slider[data-view="before"] > .photo-placeholder:nth-child(2),
+.ba-pair.is-slider[data-view="after"] > .photo-placeholder:nth-child(1) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* the arrow button */
+.ba-arrow {
+  position: absolute;
+  top: 50%;
+  right: var(--space-3);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--green-900);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.ba-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.ba-arrow:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* on the After photo the arrow moves to the left and points back */
+.ba-pair[data-view="after"] .ba-arrow {
+  right: auto;
+  left: var(--space-3);
+}
+
+/* ========== Before/after arrow inside the photo viewer ========== */
+.lightbox-arrow {
+  position: absolute;
+  top: 40%;
+  right: var(--space-2);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--green-900);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lightbox-arrow:hover {
+  transform: scale(1.1);
+}
+
+.lightbox-arrow:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* on the After photo the arrow moves to the left and points back */
+.lightbox[data-view="after"] .lightbox-arrow {
+  right: auto;
+  left: var(--space-2);
+}
+
+/* ========== About page ========== */
+.about-story,
+.equipment {
+  padding-block: var(--space-8);
+}
+
+.values {
+  padding-block: var(--space-8);
+  background-color: var(--green-100);
+}
+
+/* text and photo side by side on desktop */
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.about-story-grid p:last-child {
+  margin-bottom: 0;
+}
+
+/* wide photo frame (the home gallery frames are tall 4:5) */
+.about-photo {
+  aspect-ratio: 4 / 3;
+}
+
+@media (min-width: 900px) {
+  .about-story-grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  /* put the photo on the left in the equipment section, so the
+     page alternates: text|photo, then photo|text */
+  .equipment .about-photo {
+    order: -1;
+  }
+}
+
+/* ========== Areas page ========== */
+.areas-page {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+/* search box */
+.area-search {
+  max-width: 560px;
+  margin-bottom: var(--space-4);
+}
+
+.area-search label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.area-search input {
+  width: 100%;
+  padding: var(--space-4);
+  background-color: #fff;
+  border: 2px solid rgba(14, 75, 1, 0.3);
+  border-radius: var(--radius);
+  font-family: inherit;
+  /* 16px or larger stops iPhones zooming in when the box is tapped */
+  font-size: 1.0625rem;
+  color: var(--text);
+}
+
+.area-search input:focus {
+  border-color: var(--green-900);
+  outline: 3px solid var(--green-100);
+}
+
+.area-status {
+  min-height: 1.6em;
+  margin-bottom: var(--space-5);
+  font-size: 0.9375rem;
+  color: #5a5a5a;
+}
+
+/* one card per town, built by script.js in step 16c:
+   <article class="area-card"><h2>Town</h2><ul class="chip-list">...</ul></article> */
+.area-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.area-card {
+  padding: var(--space-5);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.12);
+  border-radius: var(--radius);
+}
+
+.area-card h2 {
+  margin-bottom: var(--space-3);
+  font-size: 1.375rem;
+}
+
+.area-card .chip-list {
+  margin-bottom: 0;
+}
+
+/* chips inside a card sit on white, so give them the grey page colour */
+.area-card .chip-list li {
+  background-color: var(--bg);
+}
+
+/* the part of a name that matches what the visitor typed */
+.area-card mark {
+  padding: 0 2px;
+  border-radius: 3px;
+  background-color: #ffe9b8;
+  color: inherit;
+}
+
+/* nothing found */
+.area-empty {
+  max-width: 560px;
+  padding: var(--space-6);
+  background-color: var(--green-100);
+  border-radius: var(--radius);
+}
+
+.area-empty[hidden] {
+  display: none;
+}
+
+.area-empty .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+@media (min-width: 640px) {
+  .area-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .area-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== FAQ page ========== */
+.faq-page {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+/* keep the reading width comfortable on large screens */
+.faq-container {
+  max-width: 800px;
+}
+
+.faq-group {
+  margin-bottom: var(--space-7);
+}
+
+.faq-group:last-child {
+  margin-bottom: 0;
+}
+
+.faq-group h2 {
+  margin-bottom: var(--space-4);
+}
+
+/* one question */
+.faq-item {
+  margin-bottom: var(--space-3);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.15);
+  border-radius: var(--radius);
+}
+
+.faq-item[open] {
+  border-color: var(--green-600);
+}
+
+.faq-item summary {
+  position: relative;
+  display: block;
+  padding: var(--space-4) var(--space-7) var(--space-4) var(--space-5);
+  font-weight: 600;
+  cursor: pointer;
+  /* hide the browser's default triangle */
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* plus sign that turns into a minus when open */
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  right: var(--space-5);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--green-900);
+  transform: translateY(-50%);
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item summary:hover {
+  background-color: var(--green-100);
+  border-radius: var(--radius);
+}
+
+.faq-item summary:focus-visible {
+  outline: 3px solid var(--green-600);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* the answer */
+.faq-item p {
+  margin: 0;
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+/* ========== Quote page ========== */
+.quote-page {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+.quote-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* the form card */
+.quote-form {
+  padding: var(--space-5);
+  background-color: #fff;
+  border: 1px solid rgba(14, 75, 1, 0.12);
+  border-radius: var(--radius);
+}
+
+.form-field {
+  margin-bottom: var(--space-5);
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+  color: #5a5a5a;
+}
+
+.form-field input[type="text"],
+.form-field input[type="tel"],
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: #fff;
+  border: 2px solid rgba(14, 75, 1, 0.3);
+  border-radius: var(--radius);
+  font-family: inherit;
+  /* 16px or larger stops iPhones zooming in when a field is tapped */
+  font-size: 1.0625rem;
+  color: var(--text);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--green-900);
+  outline: 3px solid var(--green-100);
+}
+
+/* two fields side by side on wider screens */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 var(--space-4);
+}
+
+/* error state: script.js sets aria-invalid and shows the message */
+.form-field [aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.field-error {
+  margin: var(--space-2) 0 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.field-error[hidden] {
+  display: none;
+}
+
+/* consent checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.form-field .checkbox-label {
+  margin-bottom: 0;
+}
+
+.checkbox-label input {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  accent-color: var(--green-900);
+}
+
+.checkbox-label input[aria-invalid="true"] {
+  outline: 2px solid #b3261e;
+  outline-offset: 2px;
+}
+
+/* submit button and hint */
+.quote-submit {
+  display: block;
+  width: 100%;
+  padding-block: var(--space-4);
+  border: 0;
+  font-family: inherit;
+  font-size: 1.0625rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.quote-page .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+.form-hint {
+  margin: var(--space-3) 0 0;
+  font-size: 0.875rem;
+  text-align: center;
+  color: #5a5a5a;
+}
+
+/* shown after the form is sent */
+.quote-sent {
+  padding: var(--space-6);
+  background-color: var(--green-100);
+  border-radius: var(--radius);
+}
+
+.quote-sent[hidden] {
+  display: none;
+}
+
+.quote-sent p:last-child {
+  margin-bottom: 0;
+}
+
+/* side card */
+.quote-aside {
+  padding: var(--space-5);
+  background-color: var(--green-100);
+  border-radius: var(--radius);
+}
+
+.quote-aside .btn {
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.btn-call {
+  background-color: var(--green-900);
+  color: #fff;
+}
+
+.quote-aside h3 {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+
+.aside-steps {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.aside-steps li {
+  margin-bottom: var(--space-2);
+}
+
+@media (min-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .quote-layout {
+    grid-template-columns: 1fr 340px;
+    gap: var(--space-7);
+  }
+
+  .quote-form {
+    padding: var(--space-6);
+  }
+
+  .quote-aside {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+/* ========== Contact page ========== */
+.contact-methods {
+  padding-block: var(--space-7);
+}
+
+/* buttons inside the three contact cards sit at the bottom, level across the row */
+.service-card .btn {
+  margin-top: auto;
+  overflow-wrap: anywhere;
+}
+
+/* the default white focus ring would vanish on a white card */
+.service-card .btn:focus-visible {
+  outline-color: var(--green-900);
+}
+
+.contact-details {
+  padding-block: var(--space-8);
+  background-color: #fff;
+}
+
+/* hours and payment list */
+.info-list {
+  margin: 0 0 var(--space-4);
+}
+
+.info-list > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid rgba(14, 75, 1, 0.15);
+}
+
+.info-list dt {
+  font-weight: 600;
+}
+
+.info-list dd {
+  margin: 0;
+}
+
+.payment-note {
+  font-size: 0.9375rem;
+  color: #5a5a5a;
+}
+
+/* ========== Privacy policy (legal text) ========== */
+.legal-page {
+  padding-block: var(--space-7) var(--space-8);
+}
+
+/* narrow column: long legal text is easier to read at about 70 characters */
+.legal-container {
+  max-width: 760px;
+}
+
+.legal-updated {
+  margin-bottom: var(--space-5);
+  font-size: 0.9375rem;
+  color: #5a5a5a;
+}
+
+/* the "In short" summary box */
+.legal-summary {
+  margin-bottom: var(--space-7);
+  padding: var(--space-5);
+  background-color: var(--green-100);
+  border-left: 4px solid var(--green-900);
+  border-radius: var(--radius);
+}
+
+.legal-summary h2 {
+  margin-bottom: var(--space-3);
+  font-size: 1.25rem;
+}
+
+.legal-summary ul {
+  margin: 0;
+}
+
+.legal-summary li:last-child {
+  margin-bottom: 0;
+}
+
+/* each numbered section */
+.legal-page section {
+  margin-bottom: var(--space-6);
+}
+
+.legal-page section h2 {
+  margin-bottom: var(--space-3);
+  font-size: 1.375rem;
+}
+
+.legal-page ul {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-5);
+}
+
+.legal-page li {
+  margin-bottom: var(--space-2);
+}
+
+/* links stay obvious inside long text */
+.legal-page a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ========== Icons (SVG sprite, see icons.svg) ========== */
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+  /* outline style; colour comes from the surrounding text */
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* round green badge behind the icon on service, values and contact cards */
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-4);
+  border-radius: 50%;
+  background-color: var(--green-100);
+  color: var(--green-900);
+}
+
+.service-icon .icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* trust strip icons */
+.trust-list .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--green-600);
+}
+
+/* Call and WhatsApp buttons in the phone bar: icon beside the label */
+.contact-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.contact-bar .icon {
+  width: 20px;
+  height: 20px;
 }

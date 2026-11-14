@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Get a Free Quote | Thuo Mowers Services</title>
+    <meta
+      name="description"
+      content="Tell us about your garden and get a free, no-obligation quote for lawn mowing, hedge trimming or landscaping. Your details go straight to us on WhatsApp."
+    />
+    <meta name="theme-color" content="#0e4b01" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar container" aria-label="Main">
+        <a href="index.html" class="logo">Thuo Mowers</a>
+
+        <button
+          class="nav-toggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          ☰
+        </button>
+
+        <div class="navbar-links" id="nav-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="areas.html">Areas</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="quote.html" class="nav-cta" aria-current="page">Get a Quote</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>Get a free quote</h1>
+        <p>
+          Tell us a little about your garden. It takes about a minute, and
+          there's no obligation.
+        </p>
+      </div>
+    </section>
+
+    <main class="quote-page">
+      <div class="container quote-layout">
+        <div>
+          <form id="quote-form" class="quote-form" novalidate>
+            <div class="form-field">
+              <label for="q-name">Your name</label>
+              <input
+                type="text"
+                id="q-name"
+                name="name"
+                autocomplete="name"
+                required
+                aria-describedby="q-name-error"
+              />
+              <p class="field-error" id="q-name-error" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <label for="q-phone">Phone number</label>
+              <input
+                type="tel"
+                id="q-phone"
+                name="phone"
+                autocomplete="tel"
+                inputmode="tel"
+                placeholder="e.g. 0712 345 678"
+                required
+                aria-describedby="q-phone-error"
+              />
+              <p class="field-error" id="q-phone-error" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <label for="q-place">Town and estate</label>
+              <input
+                type="text"
+                id="q-place"
+                name="place"
+                list="place-options"
+                autocomplete="off"
+                placeholder="e.g. Kileleshwa, Nairobi"
+                required
+                aria-describedby="q-place-error"
+              />
+              <!-- suggestions are filled in from areas-data.js (step 18c) -->
+              <datalist id="place-options"></datalist>
+              <p class="field-error" id="q-place-error" hidden></p>
+            </div>
+
+            <div class="form-field">
+              <label for="q-service">What do you need?</label>
+              <select id="q-service" name="service" required aria-describedby="q-service-error">
+                <option value="">Choose a service</option>
+                <option>Lawn mowing</option>
+                <option>Hedge trimming</option>
+                <option>Tree pruning</option>
+                <option>Garden design and landscaping</option>
+                <option>Maintenance plan</option>
+                <option>Garden clean-up</option>
+                <option>Not sure yet</option>
+              </select>
+              <p class="field-error" id="q-service-error" hidden></p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="q-size">
+                  Garden size <span class="optional">(optional)</span>
+                </label>
+                <select id="q-size" name="size">
+                  <option value="">Not sure</option>
+                  <option>Small</option>
+                  <option>Medium</option>
+                  <option>Large</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="q-when">
+                  When? <span class="optional">(optional)</span>
+                </label>
+                <select id="q-when" name="when">
+                  <option value="">No rush</option>
+                  <option>As soon as possible</option>
+                  <option>This week</option>
+                  <option>Next week</option>
+                  <option>Just getting a price</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="q-notes">
+                Anything we should know? <span class="optional">(optional)</span>
+              </label>
+              <textarea
+                id="q-notes"
+                name="notes"
+                rows="4"
+                placeholder="e.g. gate code, dogs, where to enter, photos to follow on WhatsApp"
+              ></textarea>
+            </div>
+
+            <div class="form-field form-consent">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="q-consent"
+                  name="consent"
+                  required
+                  aria-describedby="q-consent-error"
+                />
+                <span>
+                  I agree that Thuo Mowers may use these details to reply to my
+                  quote request. Read our
+                  <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a>.
+                </span>
+              </label>
+              <p class="field-error" id="q-consent-error" hidden></p>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp quote-submit">
+              Send my quote request on WhatsApp
+            </button>
+            <p class="form-hint">
+              This opens WhatsApp with your details already written. Press send
+              there and we'll receive it.
+            </p>
+          </form>
+
+          <!-- shown by script.js after WhatsApp has been opened -->
+          <div class="quote-sent" id="quote-sent" hidden tabindex="-1">
+            <h2>One more tap to send</h2>
+            <p>
+              WhatsApp should have opened with your request. Press
+              <strong>send</strong> there and we'll reply as soon as we can.
+            </p>
+            <p>
+              Nothing happened?
+              <a id="quote-sent-link" href="https://wa.me/254700000000" target="_blank" rel="noopener">Open WhatsApp again</a>
+              or call us on <a href="tel:+254700000000">+254 700 000 000</a>.
+            </p>
+          </div>
+
+          <noscript>
+            <p>
+              Turn on JavaScript to use this form, or
+              <a href="https://wa.me/2547114071456">message us on WhatsApp</a>
+              directly.
+            </p>
+          </noscript>
+        </div>
+
+        <aside class="quote-aside">
+          <h2>Prefer to chat?</h2>
+          <p>Message us straight away, or send a photo of your garden.</p>
+          <a
+            href="https://wa.me/2547114071456?text=Hello%20Thuo%20Mowers%2C%20I%27d%20like%20a%20quote."
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+            >Chat on WhatsApp</a
+          >
+          <a href="tel:+2547114071456" class="btn btn-call">Call us</a>
+
+          <h3>What happens next</h3>
+          <ol class="aside-steps">
+            <li>We read your request and reply with a clear price.</li>
+            <li>You choose a day that suits you.</li>
+            <li>We do the work. You pay after, by M-Pesa or cash.</li>
+          </ol>
+        </aside>
+      </div>
+    </main>
+ <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p>&copy; 2026 Thuo Mowers Services. All rights reserved.</p>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+
+        <div class="contact-bar" aria-label="Quick contact">
+      <a href="tel:+254114071456" class="contact-bar-call">
+        <span aria-hidden="true">📞</span> Call
+      </a>
+      <a
+        href="https://wa.me/254114071456?text=Hello%20Thuo%20Mowers%2C%20I%27d%20like%20a%20quote."
+        class="contact-bar-whatsapp"
+        target="_blank"
+        rel="noopener"
+      >
+        <span aria-hidden="true">💬</span> WhatsApp
+      </a>
+    </div>
+
+    <script src="areas-data.js" defer></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>
