@@ -1,3 +1,6 @@
+// filled in from site.json by build.js
+const WHATSAPP_NUMBER = "{{whatsapp}}";
+
 const toggle = document.querySelector(".nav-toggle");
 const menu = document.querySelector("#nav-links");
 
@@ -245,7 +248,7 @@ if (areaResults && typeof AREAS !== "undefined") {
     areaEmpty.hidden = cardCount > 0;
     if (cardCount === 0) {
       const message = `Hello Thuo Mowers, do you serve ${typed}?`;
-      areaEmptyLink.href = `https://wa.me/254700000000?text=${encodeURIComponent(message)}`;
+      areaEmptyLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     }
   }
 
@@ -258,7 +261,6 @@ const quoteForm = document.querySelector("#quote-form");
 
 if (quoteForm) {
   // placeholder: replace with the real number (country code, no + or spaces)
-  const WHATSAPP_NUMBER = "254114071456";
 
   // --- town and estate suggestions, from areas-data.js ---
   const placeOptions = document.querySelector("#place-options");

@@ -105,6 +105,18 @@ fs.cpSync(PUBLIC, DIST, { recursive: true });
 
 const partials = readPartials();
 const problems = [];
+// fill tokens in script.js too, e.g. {{whatsapp}}
+const scriptPath = path.join(DIST, "script.js");
+if (fs.existsSync(scriptPath)) {
+  const filled = fs
+    .readFileSync(scriptPath, "utf8")
+    .replace(/\{\{(\w+)\}\}/g, (match, key) => {
+      if (key in site) return site[key];
+      problems.push(`script.js: unknown token ${match}`);
+      return match;
+    });
+  fs.writeFileSync(scriptPath, filled);
+}
 const pageFiles = fs
   .readdirSync(PAGES)
   .filter((file) => file.endsWith(".html"));
