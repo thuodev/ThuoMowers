@@ -95,6 +95,46 @@ function buildPage(source, pageFile, partials, site, problems) {
   return html;
 }
 
+// ---------- sitemap.xml and robots.txt ----------
+let warnedAboutPlaceholder = false;
+
+function writeSearchFiles(site, pageFiles) {
+  const base = site.siteUrl.replace(/\/+$/, "");
+
+  if (base.includes("example") && !warnedAboutPlaceholder) {
+    console.warn(
+      "Note: siteUrl in site.json is still a placeholder. Set the real address before launch.",
+    );
+    warnedAboutPlaceholder = true;
+  }
+
+  // home page first, then the rest in alphabetical order
+  const urls = [...pageFiles]
+    .sort((a, b) =>
+      a === "index.html" ? -1 : b === "index.html" ? 1 : a.localeCompare(b),
+    )
+    .map((file) => (file === "index.html" ? `${base}/` : `${base}/${file}`));
+
+  const sitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls.map((url) => `  <url><loc>${escapeHtml(url)}</loc></url>`),
+    "</urlset>",
+    "",
+  ].join("\n");
+
+  const robots = [
+    "User-agent: *",
+    "Allow: /",
+    "",
+    `Sitemap: ${base}/sitemap.xml`,
+    "",
+  ].join("\n");
+
+  fs.writeFileSync(path.join(DIST, "sitemap.xml"), sitemap);
+  fs.writeFileSync(path.join(DIST, "robots.txt"), robots);
+}
+
 // ---------- one full build; returns true when there were no problems ----------
 function build() {
   const site = loadSite();
@@ -135,6 +175,8 @@ function build() {
     const output = buildPage(source, pageFile, partials, site, problems);
     fs.writeFileSync(path.join(DIST, pageFile), output);
   }
+
+  writeSearchFiles(site, pageFiles);
 
   if (problems.length > 0) {
     console.error("\nBuild finished with problems:");
