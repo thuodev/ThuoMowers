@@ -86,6 +86,7 @@ function buildPage(source, pageFile, partials, site, problems) {
 
   // 3. {{wa}} and {{anyKeyFromSiteJson}}
   html = html.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+    if (key === "schema") return makeSchema(site, problems, pageFile);
     if (key === "wa") return `https://wa.me/${site.whatsapp}`;
     if (key in site) return escapeHtml(site[key]);
     problems.push(`${pageFile}: unknown token ${match}`);
@@ -93,6 +94,72 @@ function buildPage(source, pageFile, partials, site, problems) {
   });
 
   return html;
+}
+
+// ---------- local business structured data (JSON-LD) ----------
+function to24h(hour, minute, meridiem) {
+  let h = Number(hour) % 12;
+  if (meridiem.toLowerCase() === "pm") h += 12;
+  return `${String(h).padStart(2, "0")}:${minute}`;
+}
+
+// reads the town names from public/areas-data.js, so there is one list only
+function readTowns() {
+  try {
+    const text = fs.readFileSync(path.join(PUBLIC, "areas-data.js"), "utf8");
+    const areas = new Function(`${text}; return AREAS;`)();
+    return areas.map((area) => area.town);
+  } catch (error) {
+    return [];
+  }
+}
+
+function makeSchema(site, problems, pageFile) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: site.businessName,
+    url: site.siteUrl,
+    telephone: site.phoneTel,
+    email: site.email,
+    description: site.description,
+    address: { "@type": "PostalAddress", addressCountry: "KE" },
+  };
+
+  const towns = readTowns();
+  if (towns.length > 0) {
+    data.areaServed = towns.map((name) => ({ "@type": "City", name }));
+  }
+
+  // "7:00am to 6:00pm" -> opens 07:00, closes 18:00
+  const hours = String(site.hoursWeekdays).match(
+    /(\d{1,2}):(\d{2})\s*(am|pm)\s*to\s*(\d{1,2}):(\d{2})\s*(am|pm)/i,
+  );
+  if (hours) {
+    data.openingHoursSpecification = [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: to24h(hours[1], hours[2], hours[3]),
+        closes: to24h(hours[4], hours[5], hours[6]),
+      },
+    ];
+  } else {
+    problems.push(
+      `${pageFile}: could not read hoursWeekdays ("${site.hoursWeekdays}"). Use a form like "7:00am to 6:00pm".`,
+    );
+  }
+
+  // the < is escaped so nothing inside the data can close the script tag
+  const json = JSON.stringify(data, null, 2).replace(/</g, "\\u003c");
+  return `<script type="application/ld+json">\n${json}\n    </script>`;
 }
 
 // ---------- sitemap.xml and robots.txt ----------

@@ -9,5 +9,6 @@
   "hoursWeekdays": "7:00am to 6:00pm",
   "hoursSunday": "Closed",
   "till": "000000",
-  "siteUrl": "https://www.example.co.ke"
+  "siteUrl": "https://www.example.co.ke",
+  "description": "Lawn mowing, hedge trimming and landscaping across Kenya's major towns and estates."
 }
